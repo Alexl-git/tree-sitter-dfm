@@ -1,0 +1,31 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "dfm",
+      "camelcase": "Dfm",
+      "title": "Delphi DFM",
+      "scope": "source.dfm",
+      "file-types": [
+        "dfm",
+        "fmx"
+      ],
+      "injection-regex": "^dfm$",
+      "class-name": "TreeSitterDfm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for Delphi DFM form files",
+    "authors": [
+      {
+        "name": "Alexander Liberov"
+      }
+    ]
+  },
+  "bindings": {
+    "c": true,
+    "node": true
+  }
+}

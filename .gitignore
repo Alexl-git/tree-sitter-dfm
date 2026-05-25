@@ -1,0 +1,24 @@
+node_modules
+build
+*.log
+parser.exp
+parser.lib
+parser.obj
+scanner.obj
+*.obj
+*.tlog
+tree-sitter.exe
+*.exe
+
+# work artifacts (keep tools/docs versioned, exclude bulky outputs)
+work/runs/
+work/results-*.jsonl
+work/results-*.prev.jsonl
+work/sample-results*.jsonl
+work/smoke-results*.jsonl
+work/SUMMARY-*.md
+work/manifest-*.txt
+work/smoke-manifest.txt
+work/sample-manifest.txt
+work/probe-*
+work/dump.txt
