@@ -22,3 +22,6 @@ work/smoke-manifest.txt
 work/sample-manifest.txt
 work/probe-*
 work/dump.txt
+
+# WASM build output: shipped via npm iles + GitHub Releases, not committed
+*.wasm
