@@ -39,7 +39,7 @@ npm install --ignore-scripts
 node-gyp rebuild
 ```
 
-npm publishing is planned for a follow-up release.
+`tree-sitter-dfm` is now published on npm and installable via `npm install tree-sitter-dfm tree-sitter`. Cloning / vendoring also works (see Install above).
 
 ## Companion
 
