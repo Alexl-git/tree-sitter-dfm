@@ -42,14 +42,19 @@ jobs:
           node-version: 22
 
       - name: Install deps
+        # --ignore-scripts keeps node-gyp from building the native binding we do
+        # not need here, but it also suppresses tree-sitter-cli's postinstall,
+        # which is what downloads the actual `tree-sitter` executable. Rebuild
+        # just that package to fetch it.
         run: |
           npm install --ignore-scripts
+          npm rebuild tree-sitter-cli
 
       # `tree-sitter build --wasm` needs emcc, docker or podman on PATH.
       # Ubuntu runners ship docker, and the CLI pins the emscripten image it
       # uses, so this stays reproducible without installing emsdk by hand.
       # Locally the pinned toolchain is emscripten 3.1.64 -- see WASM-BUILD.md.
-      - name: Build WASM (both grammars)
+      - name: Build WASM
         run: |
           npm run build-wasm
 
