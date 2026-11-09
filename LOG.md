@@ -25,3 +25,13 @@
 - DFM grammar is intentionally minimal. Loop iterations refine it.
 
 ---
+
+## 2026-11-09  v1.2.0 -- Unicode identifiers (drag-lint wave 149 lane DF)
+
+**Change**: `identifier` rule `[A-Za-z_][A-Za-z0-9_]*` -> `[\p{L}\p{Nl}_][\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}_]*`; `object btnUeber: TButton` (real U-umlaut) no longer lexes as `btn` + stray token.
+
+**Why**: drag-lint stored such a component under its ASCII prefix, so `convert-apply --only` could not find the block (148 CV NEXT-BUMP).
+
+**Verified**: regenerated with tree-sitter 0.24.7 (parser.c 91 KB); drag-lint fixtures Windows-1252 + UTF-8/BOM store the full names; corpus A/B in the lane report.
+
+---

@@ -15,7 +15,7 @@
     }
   ],
   "metadata": {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "license": "MIT",
     "description": "Tree-sitter grammar for Delphi DFM form files",
     "authors": [

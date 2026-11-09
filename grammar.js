@@ -160,8 +160,16 @@ module.exports = grammar({
       alias(/[Ee][Nn][Dd]/, 'end'),
     ),
 
-    // Identifiers in DFM are case-insensitive ASCII names.
-    identifier: $ => /[A-Za-z_][A-Za-z0-9_]*/,
+    // Identifiers in DFM are case-insensitive Delphi identifiers. Since Delphi
+    // 2009 an identifier may contain Unicode letters, and the IDE writes them
+    // into the .dfm as-is (ANSI code page or UTF-8 with BOM), so object
+    // btnUeber: TButton with a real U-umlaut is legal. The ASCII-only rule
+    // ([A-Za-z_][A-Za-z0-9_]*) stopped at the first such letter and left the
+    // rest as a stray token (drag-lint stored the name as its ASCII prefix).
+    // Letters (\p{L}), letter-numbers (\p{Nl}) and '_' start an identifier;
+    // combining marks (\p{Mn}\p{Mc}) and decimal digits (\p{Nd}) may follow.
+    // Keywords stay ASCII; word still maps onto this rule.
+    identifier: $ => /[\p{L}\p{Nl}_][\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}_]*/,
 
     // Comments are not part of the DFM format produced by the IDE, but some
     // hand-edited DFMs include // line comments. Permit them for resilience.

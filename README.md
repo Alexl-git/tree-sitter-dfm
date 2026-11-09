@@ -45,6 +45,7 @@ console.log(tree.rootNode.toString());
 - Items collections (`Items = <` … `>`)
 - Hex blobs (`Picture.Data = {0AFC...}`)
 - Identifier values (enum members, references)
+- Unicode letters inside identifiers (Delphi 2009+ names such as `btnUeber` with a real U-umlaut; input must be UTF-8) -- v1.2.0
 - Line comments `//`
 
 ## What's not covered
