@@ -27,5 +27,12 @@ a Windows-1252 file is transcoded by the host before the parse.
 
 - drag-lint fixtures `tests/fixtures/dfm-nonascii` (Windows-1252 and UTF-8+BOM):
   symbol names `btnUeber` / Cyrillic `btnDa` stored whole (were `btn`).
-- Corpus A/B (`tree-sitter parse --stat`) over the local .dfm/.fmx manifest:
-  see the drag-lint lane report (C:\TEMP\claude\lanes\149\DF\REPORT.md).
+- Corpus tree A/B, 1.1.0 vs 1.2.0 (x64 DLLs built from each tag's `src/parser.c`,
+  trees compared node by node) over the local manifest of 2322 .dfm/.fmx files
+  (RAD Studio 37.0 sources, DevExpress, DUnit, JEDI/JVCL, production forms):
+  2322 parsed, 0 missing; failing 2 -> 2 (the same two DUnit files, pre-existing);
+  0 newly failing, 0 tree changes on any file. None of these files has a non-ASCII
+  identifier, so 1.2.0 does not change how they parse.
+- Positive control: the UTF-8+BOM fixture `FormUtf8.dfm` goes from ERROR to clean
+  (two `object` headers repaired). The Windows-1252 twin still fails when given
+  raw bytes, as expected: the host must transcode it first (see above).
